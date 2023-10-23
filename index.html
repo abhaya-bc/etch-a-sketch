@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="controls">
-        <button type="button" class="customize">Customize</button>
+    <div class="main-cont">
+        <div class="container"></div>
+        <div class="controls">
+            <button type="button" class="btn customize">Customize</button>
+            <button type="button" class="btn reset" onclick="reset()">Reset</button>
+            <button type="button" class="btn colrCtrl" data-col="rainbow">RainBow</button>
+            <button type="button" class="btn colrCtrl" data-col="greyshade">Shades</button>
+        </div>
     </div>
-    <div class="container"></div>
     <script src="./script.js"></script>
 </body>
 </html>
