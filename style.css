@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    width: 640px;
+    height: 640px;
+    border: 2px solid red;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.box {
+    width: calc(100% / 16);
+    height: 16px;
+}
+
+.active {
+    color: wheat;
+}
