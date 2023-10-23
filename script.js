@@ -14,3 +14,4 @@ boxes.forEach((box) => {
         box.classList.add('active');
     })
 });
+
