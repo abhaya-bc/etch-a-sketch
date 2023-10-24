@@ -15,32 +15,40 @@ colorCtrlBtn.forEach(item => {
     })
 })
 
-function newSketchPad(numbSquare = 16) {
+function newSketchPad(numbOfSquares = 16) {
 
-    numbSquare = (numbSquare > 100) ? 100 : numbSquare;
+    numbOfSquares = (numbOfSquares > 100) ? 99 : numbOfSquares;
+
+    removeLayout();
+
+    createLayout(numbOfSquares);
+
+}
+
+function createLayout(numbOfSquares) {
+
     const sketchpadWidth = 640;
-    const sizeOfaBox = sketchpadWidth / numbSquare;
-    let squareOfNumb = numbSquare ** 2;
+    const sizeOfaBox = sketchpadWidth / numbOfSquares;
+    let squareValue = numbOfSquares ** 2;
 
-    let boxes = document.querySelectorAll('.container > *');
-    boxes.forEach((box)=>{
-        box.parentNode.removeChild(box);
-    })
-    
-    for(let i = 0; i < squareOfNumb; i++) {
+    for(let i = 0; i < squareValue; i++) {
         let div = document.createElement('div')
         div.style.cssText = `width: ${sizeOfaBox}px; height: ${sizeOfaBox}px;`
         div.setAttribute('class', 'box');
+
+        div.addEventListener('mouseover', ()=>{
+            div.style['background-color'] = getColor();
+        })
+
         container.appendChild(div);
     }
+}
 
-    boxes = document.querySelectorAll('.container > *');
-    console.log(boxes);
-    boxes.forEach((box) => {
-        box.addEventListener('mouseover', ()=>{
-            box.style['background-color'] = getColor();
-        })
-    });
+function removeLayout() {
+    const boxes = document.querySelectorAll('.container > *');
+    boxes.forEach((box)=>{
+        box.parentNode.removeChild(box);
+    })
 }
 
 function reset() {
@@ -49,21 +57,8 @@ function reset() {
 }
 
 function getColor() {
-    let color;
-    switch (colorType) {
-        case 'rainbow':
-            colorType = 'rainbow';
-            color = rainbowColor();
-            break;
-        case 'greyshade':
-            colorType = 'greyshade'
-            color = greyShade();
-            break;
-        default:
-            colorType = 'normal'
-            color = '#2F4858'
-            break;
-    }
+    let color = (colorType == 'rainbow') ? rainbowColor() :
+                (colorType == 'greyshade') ? greyShade() : '#2f4858' ;
     return color;
 }
 
@@ -77,9 +72,6 @@ function rainbowColor() {
 function randomNumber(a) {
     return Math.floor(Math.random()*a);
 }
-
-newSketchPad();
-
 
 function greyShade(){
     let color = `rgb(${darkness(darkcount)}, ${darkness(darkcount)}, ${darkness(darkcount)})`;
@@ -100,3 +92,5 @@ function darkness(count) {
     result = Math.floor(result);
     return result;
 }
+
+newSketchPad();
